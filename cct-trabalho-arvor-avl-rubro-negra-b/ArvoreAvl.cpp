@@ -11,7 +11,7 @@ Arvore* Arvore::criar() {
 
 No* criarNo()
 {
-    No* no = (No*)malloc(sizeof(No));
+    No* no = new No();
     return no;
 }
 

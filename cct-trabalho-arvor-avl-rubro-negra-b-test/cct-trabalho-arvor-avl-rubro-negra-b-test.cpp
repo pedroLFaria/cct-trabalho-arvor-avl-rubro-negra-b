@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "Utils.h"
+
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ccttrabalhoarvoravlrubronegrabtest

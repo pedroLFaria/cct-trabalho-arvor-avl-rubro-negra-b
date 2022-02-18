@@ -12,7 +12,7 @@ Arvore* Arvore::criaArvore(int ordem) {
 
 No* Arvore::criaNo() {    
     int max = this->ordem * 2;
-    No* no = (No*)malloc(sizeof(No));
+    No* no = new No();
     
     no->chaves = (int*)malloc(sizeof(int) * (max + 1));
     no->filhos = (No**)malloc(sizeof(No) * (max + 2));

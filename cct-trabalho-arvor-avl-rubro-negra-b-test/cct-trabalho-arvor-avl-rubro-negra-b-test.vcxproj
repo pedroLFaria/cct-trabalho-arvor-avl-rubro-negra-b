@@ -158,16 +158,23 @@
   <ItemGroup>
     <ClCompile Include="ArvoreAvlTest.cpp" />
     <ClCompile Include="ArvoreRubroNegraTest.cpp" />
-    <ClCompile Include="cct-trabalho-arvor-avl-rubro-negra-b-test.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ArvoreBTest.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cct-trabalho-arvor-avl-rubro-negra-b\cct-trabalho-arvor-avl-rubro-negra-b.vcxproj">
+      <Project>{ec3f59b2-08b0-492c-af7d-c4db7771a1ae}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

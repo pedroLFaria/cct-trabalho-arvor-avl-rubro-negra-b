@@ -66,11 +66,8 @@ namespace ArvoreAvlTest
 			arvore->adicionar(7);
 			arvore->adicionar(1);
 			arvore->adicionar(2);
-			int fbArvore = arvore->fb(arvore->raiz);
-			Assert::IsTrue(fbArvore == 2);
-			arvore->balanceamento(arvore->raiz);
-			fbArvore = arvore->fb(arvore->raiz);
-			Assert::IsTrue(fbArvore == 0);
+			int fbArvore = arvore->fb(arvore->raiz);			
+			Assert::IsTrue( -1 >= fbArvore <= 1);
 		}		
 	};
 }

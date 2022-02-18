@@ -20,8 +20,7 @@ namespace ArvoreB
         int contador = 0;
 
         static Arvore* criaArvore(int);
-        void percorreArvore(No*);
-        No* criaNo();
+        void percorreArvore(No*);        
         int pesquisaBinaria(No*, int);
         int localizaChave(int);
         No* localizaNo(int);
@@ -30,6 +29,7 @@ namespace ArvoreB
         No* divideNo(No*);
         void adicionaChaveRecursivo(No*, No*, int);
         void adicionaChave(int);
-
+    private:
+        No* criaNo();
     };
 }
