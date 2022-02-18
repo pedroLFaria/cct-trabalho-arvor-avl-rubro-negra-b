@@ -140,11 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArvoreAvl.cpp" />
+    <ClCompile Include="ArvoreB.cpp" />
     <ClCompile Include="ArvoreRubroNegra.cpp" />
     <ClCompile Include="cct-trabalho-arvor-avl-rubro-negra-b.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArvoreAvl.h" />
+    <ClInclude Include="ArvoreB.h" />
     <ClInclude Include="ArvoreRubroNegra.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

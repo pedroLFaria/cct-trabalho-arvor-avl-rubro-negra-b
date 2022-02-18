@@ -24,12 +24,18 @@
     <ClCompile Include="ArvoreRubroNegra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ArvoreB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArvoreAvl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArvoreRubroNegra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArvoreB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ArvoreAvl.h"
 #include "ArvoreRubroNegra.h"
+#include "ArvoreB.h"
 
 int main()
 {
@@ -28,4 +29,18 @@ int main()
     printf("In-order: ");
     ArvoreRubroNegra::percorrerProfundidadeInOrder(arn, arn->raiz, ArvoreRubroNegra::visitar);
     printf("\n");
+
+    ArvoreB* ArvoreB = ArvoreB::criaArvoreB(1);
+
+    ArvoreB->adicionaChave(12);
+    ArvoreB->adicionaChave(3);
+    ArvoreB->adicionaChave(5);
+    ArvoreB->adicionaChave(7);
+    ArvoreB->adicionaChave(15);
+    ArvoreB->adicionaChave(99);
+    ArvoreB->adicionaChave(1);
+
+    ArvoreB->percorreArvoreB(ArvoreB->raiz);
+
+    printf("\nNúmero de operações: %d\n", ArvoreB->contador);
 }
