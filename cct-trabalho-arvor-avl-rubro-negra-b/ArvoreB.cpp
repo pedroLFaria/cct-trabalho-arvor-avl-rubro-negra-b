@@ -1,15 +1,16 @@
 #include "ArvoreB.h"
 
+using namespace ArvoreB;
 
-ArvoreB* ArvoreB::criaArvoreB(int ordem) {
-    ArvoreB* a = (ArvoreB*)malloc(sizeof(ArvoreB));
+Arvore* Arvore::criaArvore(int ordem) {
+    Arvore* a = (Arvore*)malloc(sizeof(Arvore));
     a->ordem = ordem;
     a->raiz = a->criaNo();
 
     return a;
 }
 
-No* ArvoreB::criaNo() {    
+No* Arvore::criaNo() {    
     int max = this->ordem * 2;
     No* no = (No*)malloc(sizeof(No));
     
@@ -23,19 +24,19 @@ No* ArvoreB::criaNo() {
     return no;
 }
 
-void ArvoreB::percorreArvoreB(No* no) {
+void Arvore::percorreArvore(No* no) {
     if (no != NULL) {
         for (int i = 0; i < no->total; i++) {
-            percorreArvoreB(no->filhos[i]); //visita o filho a esquerda
+            percorreArvore(no->filhos[i]); //visita o filho a esquerda
 
             printf("%d ", no->chaves[i]);
         }
 
-        percorreArvoreB(no->filhos[no->total]); //visita ultimo filho (direita)
+        percorreArvore(no->filhos[no->total]); //visita ultimo filho (direita)
     }
 }
 
-int ArvoreB::pesquisaBinaria(No* no, int chave) {
+int Arvore::pesquisaBinaria(No* no, int chave) {
     int inicio = 0, fim = no->total - 1, meio;
 
     while (inicio <= fim) {
@@ -56,7 +57,7 @@ int ArvoreB::pesquisaBinaria(No* no, int chave) {
     return inicio; //não encontrou	
 }
 
-int ArvoreB::localizaChave(int chave) {
+int Arvore::localizaChave(int chave) {
     No* no = this->raiz;
 
     while (no != NULL) {
@@ -73,7 +74,7 @@ int ArvoreB::localizaChave(int chave) {
     return 0; //não encontrou	
 }
 
-No* ArvoreB::localizaNo(int chave) {
+No* Arvore::localizaNo(int chave) {
     No* no = this->raiz;
 
     while (no != NULL) {
@@ -90,7 +91,7 @@ No* ArvoreB::localizaNo(int chave) {
     return NULL; //não encontrou nenhum nó
 }
 
-void ArvoreB::adicionaChaveNo(No* no, No* novo, int chave) {
+void Arvore::adicionaChaveNo(No* no, No* novo, int chave) {
     int i = pesquisaBinaria(no, chave);
 
     contador++;
@@ -106,13 +107,13 @@ void ArvoreB::adicionaChaveNo(No* no, No* novo, int chave) {
     no->total++;
 }
 
-int ArvoreB::transbordo(No* no) {
+int Arvore::transbordo(No* no) {
     contador++;
 
     return no->total > this->ordem * 2;
 }
 
-No* ArvoreB::divideNo(No* no) {
+No* Arvore::divideNo(No* no) {
     int meio = no->total / 2;
     No* novo = criaNo();
     novo->pai = no->pai;
@@ -133,7 +134,7 @@ No* ArvoreB::divideNo(No* no) {
     return novo;
 }
 
-void ArvoreB::adicionaChaveRecursivo(No* no, No* novo, int chave) {
+void Arvore::adicionaChaveRecursivo(No* no, No* novo, int chave) {
     contador++;
 
     adicionaChaveNo(no, novo, chave);
@@ -158,7 +159,7 @@ void ArvoreB::adicionaChaveRecursivo(No* no, No* novo, int chave) {
     }
 }
 
-void ArvoreB::adicionaChave(int chave) {
+void Arvore::adicionaChave(int chave) {
     No* no = localizaNo(chave);
 
     adicionaChaveRecursivo(no, NULL, chave);

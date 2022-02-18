@@ -6,41 +6,41 @@
 int main()
 {
     std::cout << "Hello World!\n";
-    ArvoreAvl::Arvore* aAvl = ArvoreAvl::criar();
+    ArvoreAvl::Arvore* aAvl = ArvoreAvl::Arvore::criar();
 
     for (int i = 1; i <= 7; i++) {
-        ArvoreAvl::adicionar(aAvl, i);
+        aAvl->adicionar(i);
     }
 
     printf("In-order: ");
-    percorrerProfundidadeInOrder(aAvl->raiz, ArvoreAvl::visitar);
+    aAvl->percorrerProfundidadeInOrder(aAvl->raiz, aAvl->visitar);
     printf("\n");
 
-    ArvoreRubroNegra::Arvore* arn = ArvoreRubroNegra::criar();
+    ArvoreRubroNegra::Arvore* arn = ArvoreRubroNegra::Arvore::criar();
 
-    adicionar(arn, 7);
-    adicionar(arn, 6);
-    adicionar(arn, 5);
-    adicionar(arn, 4);
-    adicionar(arn, 3);
-    adicionar(arn, 2);
-    adicionar(arn, 1);
+    arn->adicionar(7);
+    arn->adicionar(6);
+    arn->adicionar(5);
+    arn->adicionar(4);
+    arn->adicionar(3);
+    arn->adicionar(2);
+    arn->adicionar(1);
 
     printf("In-order: ");
-    ArvoreRubroNegra::percorrerProfundidadeInOrder(arn, arn->raiz, ArvoreRubroNegra::visitar);
+    arn->percorrerProfundidadeInOrder(arn->raiz, arn->visitar);
     printf("\n");
 
-    ArvoreB* ArvoreB = ArvoreB::criaArvoreB(1);
+    ArvoreB::Arvore* arvoreB = ArvoreB::Arvore::criaArvore(1);
 
-    ArvoreB->adicionaChave(12);
-    ArvoreB->adicionaChave(3);
-    ArvoreB->adicionaChave(5);
-    ArvoreB->adicionaChave(7);
-    ArvoreB->adicionaChave(15);
-    ArvoreB->adicionaChave(99);
-    ArvoreB->adicionaChave(1);
+    arvoreB->adicionaChave(12);
+    arvoreB->adicionaChave(3);
+    arvoreB->adicionaChave(5);
+    arvoreB->adicionaChave(7);
+    arvoreB->adicionaChave(15);
+    arvoreB->adicionaChave(99);
+    arvoreB->adicionaChave(1);
 
-    ArvoreB->percorreArvoreB(ArvoreB->raiz);
+    arvoreB->percorreArvore(arvoreB->raiz);
 
-    printf("\nNúmero de operações: %d\n", ArvoreB->contador);
+    printf("\nNúmero de operações: %d\n", arvoreB->contador);
 }

@@ -1,35 +1,38 @@
 #include <stdlib.h>
 #include <stdio.h>
+
 namespace ArvoreAvl
 {
-    typedef struct no 
-    {
-        struct no* pai;
-        struct no* esquerda;
-        struct no* direita;
-        int valor;
-    } No;
 
-    typedef struct arvore 
+    class No 
     {
-        struct no* raiz;
-    } Arvore;
+    public:
+        No* pai = NULL;
+        No* esquerda = NULL;
+        No* direita = NULL;
+        int valor = NULL;
+    };
 
-    Arvore* criar();
-    int vazia(Arvore*);
-    No* adicionarNo(No*, int);
-    No* adicionar(Arvore*, int);
-    void remover(Arvore*, No* );
-    No* localizar(No*, int );
-    void percorrerProfundidadeInOrder(No*, void (*callback)(int));
-    void percorrerProfundidadePreOrder(No*, void (*callback)(int));
-    void percorrerProfundidadePosOrder(No*, void (callback)(int));
-    void visitar(int );
-    void balanceamento(Arvore*, No*);
-    int altura(No*);
-    int fb(No*);
-    No* rsd(Arvore*, No*);
-    No* rse(Arvore*, No*);
-    No* rdd(Arvore*, No*);
-    No* rde(Arvore*, No*);
+    class Arvore
+    {
+    public:
+        struct No* raiz = NULL;
+        static Arvore* criar();
+        int vazia();
+        No* adicionarNo(No*, int);
+        No* adicionar(int);
+        void remover(No*);
+        No* localizar(No*, int);
+        void percorrerProfundidadeInOrder(No*, void (*callback)(int));
+        void percorrerProfundidadePreOrder(No*, void (*callback)(int));
+        void percorrerProfundidadePosOrder(No*, void (callback)(int));
+        static void visitar(int);
+        void balanceamento(No*);
+        int altura(No*);
+        int fb(No*);
+        No* rsd(No*);
+        No* rse(No*);
+        No* rdd(No*);
+        No* rde(No*);
+    };
 }

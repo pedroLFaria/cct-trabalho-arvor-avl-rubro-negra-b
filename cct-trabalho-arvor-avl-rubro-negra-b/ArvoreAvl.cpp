@@ -2,7 +2,7 @@
 
 using namespace ArvoreAvl;
 
-Arvore* ArvoreAvl::criar() {
+Arvore* Arvore::criar() {
     Arvore* arvore = (Arvore*)malloc(sizeof(Arvore));
     arvore->raiz = NULL;
 
@@ -12,17 +12,14 @@ Arvore* ArvoreAvl::criar() {
 No* criarNo()
 {
     No* no = (No*)malloc(sizeof(No));
-    no->pai = NULL;
-    no->direita = NULL;
-    no->esquerda= NULL;
     return no;
 }
 
-int ArvoreAvl::vazia(Arvore* arvore) {
-    return arvore->raiz == NULL;
+int Arvore::vazia() {
+    return this->raiz == NULL;
 }
 
-No* ArvoreAvl::adicionarNo(No* no, int valor) {
+No* Arvore::adicionarNo(No* no, int valor) {
     if (valor > no->valor) {
         if (no->direita == NULL) {
             printf("Adicionando %d\n", valor);
@@ -55,35 +52,32 @@ No* ArvoreAvl::adicionarNo(No* no, int valor) {
     }
 }
 
-No* ArvoreAvl::adicionar(Arvore* arvore, int valor) {
-    if (arvore->raiz == NULL) {
+No* Arvore::adicionar(int valor) {
+    if (this->raiz == NULL) {
         printf("Adicionando %d\n", valor);
         No* novo = criarNo();
         novo->valor = valor;
-
-        arvore->raiz = novo;
-
+        this->raiz = novo;
         return novo;
     }
     else {
-        No* no = adicionarNo(arvore->raiz, valor);
-        balanceamento(arvore, no);
-
+        No* no = adicionarNo(this->raiz, valor);
+        balanceamento(no);
         return no;
     }
 }
 
-void ArvoreAvl::remover(Arvore* arvore, No* no) {
+void Arvore::remover(No* no) {
     if (no->esquerda != NULL) {
-        remover(arvore, no->esquerda);
+        remover(no->esquerda);
     }
 
     if (no->direita != NULL) {
-        remover(arvore, no->direita);
+        remover(no->direita);
     }
 
     if (no->pai == NULL) {
-        arvore->raiz = NULL;
+        this->raiz = NULL;
     }
     else {
         if (no->pai->esquerda == no) {
@@ -97,7 +91,7 @@ void ArvoreAvl::remover(Arvore* arvore, No* no) {
     free(no);
 }
 
-No* ArvoreAvl::localizar(No* no, int valor) {
+No* Arvore::localizar(No* no, int valor) {
     if (no->valor == valor) {
         return no;
     }
@@ -117,7 +111,7 @@ No* ArvoreAvl::localizar(No* no, int valor) {
     return NULL;
 }
 
-void ArvoreAvl::percorrerProfundidadeInOrder(No* no, void (*callback)(int)) {
+void Arvore::percorrerProfundidadeInOrder(No* no, void (*callback)(int)) {
     if (no != NULL) {
         percorrerProfundidadeInOrder(no->esquerda, callback);
         callback(no->valor);
@@ -125,7 +119,7 @@ void ArvoreAvl::percorrerProfundidadeInOrder(No* no, void (*callback)(int)) {
     }
 }
 
-void ArvoreAvl::percorrerProfundidadePreOrder(No* no, void (*callback)(int)) {
+void Arvore::percorrerProfundidadePreOrder(No* no, void (*callback)(int)) {
     if (no != NULL) {
         callback(no->valor);
         percorrerProfundidadePreOrder(no->esquerda, callback);
@@ -133,7 +127,7 @@ void ArvoreAvl::percorrerProfundidadePreOrder(No* no, void (*callback)(int)) {
     }
 }
 
-void ArvoreAvl::percorrerProfundidadePosOrder(No* no, void (callback)(int)) {
+void Arvore::percorrerProfundidadePosOrder(No* no, void (callback)(int)) {
     if (no != NULL) {
         percorrerProfundidadePosOrder(no->esquerda, callback);
         percorrerProfundidadePosOrder(no->direita, callback);
@@ -141,11 +135,11 @@ void ArvoreAvl::percorrerProfundidadePosOrder(No* no, void (callback)(int)) {
     }
 }
 
-void ArvoreAvl::visitar(int valor) {
+void Arvore::visitar(int valor) {
     printf("%d ", valor);
 }
 
-void ArvoreAvl::balanceamento(Arvore* arvore, No* no) {
+void Arvore::balanceamento(No* no) {
     while (no != NULL) {
         int fator = fb(no);
 
@@ -153,22 +147,22 @@ void ArvoreAvl::balanceamento(Arvore* arvore, No* no) {
             //rotação para a direita
             if (fb(no->esquerda) > 0) {
                 printf("RSD(%d)\n", no->valor);
-                rsd(arvore, no); //rotação simples a direita, pois o FB do filho tem sinal igual
+                rsd(no); //rotação simples a direita, pois o FB do filho tem sinal igual
             }
             else {
                 printf("RDD(%d)\n", no->valor);
-                rdd(arvore, no); //rotação dupla a direita, pois o FB do filho tem sinal diferente
+                rdd(no); //rotação dupla a direita, pois o FB do filho tem sinal diferente
             }
         }
         else if (fator < -1) { //árvore mais pesada para a direita
          //rotação para a esquerda
             if (fb(no->direita) < 0) {
                 printf("RSE(%d)\n", no->valor);
-                rse(arvore, no); //rotação simples a esquerda, pois o FB do filho tem sinal igual
+                rse(no); //rotação simples a esquerda, pois o FB do filho tem sinal igual
             }
             else {
                 printf("RDE(%d)\n", no->valor);
-                rde(arvore, no); //rotação dupla a esquerda, pois o FB do filho tem sinal diferente
+                rde(no); //rotação dupla a esquerda, pois o FB do filho tem sinal diferente
             }
         }
 
@@ -176,7 +170,7 @@ void ArvoreAvl::balanceamento(Arvore* arvore, No* no) {
     }
 }
 
-int ArvoreAvl::altura(No* no) {
+int Arvore::altura(No* no) {
     int esquerda = 0, direita = 0;
 
     if (no->esquerda != NULL) {
@@ -190,7 +184,7 @@ int ArvoreAvl::altura(No* no) {
     return esquerda > direita ? esquerda : direita; //max(esquerda,direita)
 }
 
-int ArvoreAvl::fb(No* no) {
+int Arvore::fb(No* no) {
     int esquerda = 0, direita = 0;
 
     if (no->esquerda != NULL) {
@@ -204,7 +198,7 @@ int ArvoreAvl::fb(No* no) {
     return esquerda - direita;
 }
 
-No* ArvoreAvl::rse(Arvore* arvore, No* no) {
+No* Arvore::rse(No* no) {
     No* pai = no->pai;
     No* direita = no->direita;
 
@@ -215,7 +209,7 @@ No* ArvoreAvl::rse(Arvore* arvore, No* no) {
     direita->pai = pai;
 
     if (pai == NULL) {
-        arvore->raiz = direita;
+        this->raiz = direita;
     }
     else {
         if (pai->esquerda == no) {
@@ -229,7 +223,7 @@ No* ArvoreAvl::rse(Arvore* arvore, No* no) {
     return direita;
 }
 
-No* ArvoreAvl::rsd(Arvore* arvore, No* no) {
+No* Arvore::rsd(No* no) {
     No* pai = no->pai;
     No* esquerda = no->esquerda;
 
@@ -240,7 +234,7 @@ No* ArvoreAvl::rsd(Arvore* arvore, No* no) {
     esquerda->pai = pai;
 
     if (pai == NULL) {
-        arvore->raiz = esquerda;
+        this->raiz = esquerda;
     }
     else {
         if (pai->esquerda == no) {
@@ -254,12 +248,12 @@ No* ArvoreAvl::rsd(Arvore* arvore, No* no) {
     return esquerda;
 }
 
-No* ArvoreAvl::rde(Arvore* arvore, No* no) {
-    no->direita = rsd(arvore, no->direita);
-    return rse(arvore, no);
+No* Arvore::rde(No* no) {
+    no->direita = rsd(no->direita);
+    return rse(no);
 }
 
-No* ArvoreAvl::rdd(Arvore* arvore, No* no) {
-    no->esquerda = rse(arvore, no->esquerda);
-    return rsd(arvore, no);
+No* Arvore::rdd(No* no) {
+    no->esquerda = rse(no->esquerda);
+    return rsd(no);
 }

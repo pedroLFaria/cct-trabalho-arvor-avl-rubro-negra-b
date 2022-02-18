@@ -11,27 +11,34 @@ namespace ArvoreRubroNegra
     } Cor;
 
 
-    typedef struct no 
+    class No
     {
-        struct no* pai;
-        struct no* esquerda;
-        struct no* direita;
+    public:
+        struct No* pai = NULL;
+        struct No* esquerda = NULL;
+        struct No* direita = NULL;
         Cor cor;
         int valor;
-    } No;
+    };
 
-    typedef struct arvore 
+    class Arvore
     {
-        struct no* raiz;
-        struct no* nulo;
-    } Arvore;
-
-    Arvore* criar();
-    int vazia(Arvore*);
-    No* adicionar(Arvore*, int);
-    No* localizar(Arvore* arvore, int valor);
-    void percorrerProfundidadeInOrder(Arvore*, No*, void (*)(int));
-    void percorrerProfundidadePreOrder(Arvore*, No*, void (*)(int));
-    void percorrerProfundidadePosOrder(Arvore*, No*, void (*)(int));
-    void visitar(int );
+    public:
+        struct No* raiz = NULL;
+        struct No* nulo = NULL;
+        static Arvore* criar();
+        static void visitar(int);
+        int vazia();
+        No* adicionar(int);
+        No* localizar(int valor);
+        void percorrerProfundidadeInOrder(No*, void (*)(int));
+        void percorrerProfundidadePreOrder(No*, void (*)(int));
+        void percorrerProfundidadePosOrder(No*, void (*)(int));
+    private:
+        No* criarNo(No* pai, int valor);
+        No* adicionarNo(No* no, int valor);
+        void rotacionarEsquerda(No* no);
+        void rotacionarDireita(No* no);
+        void balancear(No* no);
+    };
 }
