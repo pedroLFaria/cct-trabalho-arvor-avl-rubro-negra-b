@@ -17,8 +17,10 @@ namespace GeradorChavesTest
 		}
 		TEST_METHOD(GerarChavesEmOrdemCrescente)
 		{
-			size_t chavesLenght = 100;
-			std::vector<int> chaves = GeradorChaves::gerarChavesEmOrdemCrescente(chavesLenght , 1000);			
+			size_t chavesLenght = 1000;
+
+			
+			std::vector<int> chaves = GeradorChaves::gerarChavesEmOrdemCrescente(chavesLenght , 1000);
 			Assert::AreEqual(chavesLenght, chaves.size());
 			int valorAnterior = -1;
 			for (int i : chaves) {
@@ -46,6 +48,17 @@ namespace GeradorChavesTest
 			for (int i : chaves) {
 				Assert::IsTrue(i != valorAnterior);
 				valorAnterior = i;
+			}
+		}
+		TEST_METHOD(DezConjuntosDeMilChaves) {
+			std::vector<std::vector<int>>* conjuntoChaves = new std::vector<std::vector<int>>();
+			for (int k = 0; k < 9; k++) {
+				conjuntoChaves->push_back(GeradorChaves::gerarChavesEmOrdemCrescente(1000, 1000));
+			}
+			for (int k = 0; k < 9; k++) {
+				for (int i : conjuntoChaves->at(k)) {
+					visitarLogger(i);
+				}
 			}
 		}
 	};
