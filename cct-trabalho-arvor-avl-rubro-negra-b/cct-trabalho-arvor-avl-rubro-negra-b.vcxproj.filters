@@ -27,6 +27,9 @@
     <ClCompile Include="ArvoreB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeradorChaves.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArvoreAvl.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArvoreB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeradorChaves.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

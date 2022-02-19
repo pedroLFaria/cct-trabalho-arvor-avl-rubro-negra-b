@@ -2,6 +2,7 @@
 #include "ArvoreAvl.h"
 #include "ArvoreRubroNegra.h"
 #include "ArvoreB.h"
+#include "GeradorChaves.h"
 
 int main()
 {
@@ -43,4 +44,22 @@ int main()
     arvoreB->percorreArvore(arvoreB->raiz);
 
     printf("\nNúmero de operações: %d\n", arvoreB->contador);
+
+    std::vector<int> chaves =  GeradorChaves::gerarChavesEmOrdemCrescente(100, 1000);
+
+    for (int i = 0; i <= chaves.size()-1; i++) {
+        printf("Chaves[%d]: %d\n", i, chaves[i]);
+    }
+
+    chaves = GeradorChaves::gerarChavesEmOrdemDecrescente(100, 1000);
+
+    for (int i = 0; i <= chaves.size() - 1; i++) {
+        printf("Chaves[%d]: %d\n", i, chaves[i]);
+    }
+
+    chaves = GeradorChaves::gerarChavesAleatoria(100, 1000);
+
+    for (int i = 0; i <= chaves.size() - 1; i++) {
+        printf("Chaves[%d]: %d\n", i, chaves[i]);
+    }
 }
