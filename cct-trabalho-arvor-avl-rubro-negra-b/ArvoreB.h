@@ -7,7 +7,7 @@ namespace ArvoreB
     {
     public:
         int total;
-        int* chaves;
+        int* chaves = NULL;
         No** filhos = NULL;
         No* pai = NULL;
     };
@@ -19,7 +19,8 @@ namespace ArvoreB
         int ordem;
         int contador = 0;
         int esforcoComputacional = 0;
-
+        
+        Arvore(int ordem);
         static Arvore* criaArvore(int);
         void percorreArvore(No*);        
         int pesquisaBinaria(No*, int);

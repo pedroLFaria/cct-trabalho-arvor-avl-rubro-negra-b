@@ -2,64 +2,82 @@
 #include "ArvoreAvl.h"
 #include "ArvoreRubroNegra.h"
 #include "ArvoreB.h"
-#include "GeradorChaves.h"
+#include "ChavesGerador.h"
+#include "CsvGerador.h"
+
+vector<string> gerarEsforcoComputacionalArvoreAvl();
+vector<string> gerarEsforcoComputacionalArvoreB();
+vector<string> gerarEsforcoComputacionalArvoreRubroNegra();
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    ArvoreAvl::Arvore* aAvl = ArvoreAvl::Arvore::criar();
+    vector<string> arquivosAvl = gerarEsforcoComputacionalArvoreAvl();
+    vector<string> arquivosB = gerarEsforcoComputacionalArvoreB();
+    vector<string> arquivosRubroNegra = gerarEsforcoComputacionalArvoreRubroNegra();
+}
 
-    for (int i = 1; i <= 7; i++) {
-        aAvl->adicionar(i);
+vector<string> gerarEsforcoComputacionalArvoreAvl() {    
+    vector<string> nomesArquivos;
+
+    for(int i = 1; i <= 10; i++){
+        ArvoreAvl::Arvore* arvore = new ArvoreAvl::Arvore();
+        map<string, vector<string>> estaticasAvl;
+        string nomeArquivo = "Arvore Avl" + to_string(i);
+        vector<string> esforcoComputacional;
+        vector<string> numeroNos;
+
+        for (int i = 1; i <= 1000; i++) {
+            arvore->adicionar(i);
+            estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
+            estaticasAvl["numeroNos"].push_back(to_string(i));
+        }
+        nomesArquivos.push_back(nomeArquivo);
+        CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
+        delete arvore;
     }
+    return nomesArquivos;
+}
 
-    printf("In-order: ");
-    aAvl->percorrerProfundidadeInOrder(aAvl->raiz, aAvl->visitar);
-    printf("\n");
+vector<string> gerarEsforcoComputacionalArvoreB() {    
+    vector<string> nomesArquivos;
 
-    ArvoreRubroNegra::Arvore* arn = ArvoreRubroNegra::Arvore::criar();
+    for (int i = 1; i <= 10; i++) {
+        ArvoreB::Arvore* arvore = new ArvoreB::Arvore(20);
+        map<string, vector<string>> estaticasAvl;
+        string nomeArquivo = "Arvore B" + to_string(i);
+        vector<string> esforcoComputacional;
+        vector<string> numeroNos;
 
-    arn->adicionar(7);
-    arn->adicionar(6);
-    arn->adicionar(5);
-    arn->adicionar(4);
-    arn->adicionar(3);
-    arn->adicionar(2);
-    arn->adicionar(1);
-
-    printf("In-order: ");
-    arn->percorrerProfundidadeInOrder(arn->raiz, arn->visitar);
-    printf("\n");
-
-    ArvoreB::Arvore* arvoreB = ArvoreB::Arvore::criaArvore(1);
-
-    arvoreB->adicionaChave(12);
-    arvoreB->adicionaChave(3);
-    arvoreB->adicionaChave(5);
-    arvoreB->adicionaChave(7);
-    arvoreB->adicionaChave(15);
-    arvoreB->adicionaChave(99);
-    arvoreB->adicionaChave(1);
-
-    arvoreB->percorreArvore(arvoreB->raiz);
-
-    printf("\nNúmero de operações: %d\n", arvoreB->contador);
-
-    std::vector<int> chaves =  GeradorChaves::gerarChavesEmOrdemCrescente(100, 1000);
-
-    for (int i = 0; i <= chaves.size()-1; i++) {
-        printf("Chaves[%d]: %d\n", i, chaves[i]);
+        for (int i = 1; i <= 1000; i++) {
+            arvore->adicionaChave(i);
+            estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
+            estaticasAvl["numeroNos"].push_back(to_string(i));
+        }
+        nomesArquivos.push_back(nomeArquivo);
+        CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
+        delete arvore;
     }
+    return nomesArquivos;
+}
 
-    chaves = GeradorChaves::gerarChavesEmOrdemDecrescente(100, 1000);
+vector<string> gerarEsforcoComputacionalArvoreRubroNegra() {    
+    vector<string> nomesArquivos;
 
-    for (int i = 0; i <= chaves.size() - 1; i++) {
-        printf("Chaves[%d]: %d\n", i, chaves[i]);
+    for (int i = 1; i <= 10; i++) {
+        ArvoreRubroNegra::Arvore* arvore = new ArvoreRubroNegra::Arvore();
+        map<string, vector<string>> estaticasAvl;
+        string nomeArquivo = "Arvore Rubro Negra" + to_string(i);
+        vector<string> esforcoComputacional;
+        vector<string> numeroNos;
+
+        for (int i = 1; i <= 1000; i++) {
+            arvore->adicionar(i);
+            estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
+            estaticasAvl["numeroNos"].push_back(to_string(i));
+        }
+        nomesArquivos.push_back(nomeArquivo);
+        CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
+        delete arvore;
     }
-
-    chaves = GeradorChaves::gerarChavesAleatoria(100, 1000);
-
-    for (int i = 0; i <= chaves.size() - 1; i++) {
-        printf("Chaves[%d]: %d\n", i, chaves[i]);
-    }
+    return nomesArquivos;
 }

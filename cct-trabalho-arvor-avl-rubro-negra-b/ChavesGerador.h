@@ -7,7 +7,7 @@
 #include <set>
 #include <iostream>
 
-class GeradorChaves
+class ChavesGerador
 {
 public:
 	static std::vector<int> gerarChavesEmOrdemCrescente(int tamanho, int maxValue);

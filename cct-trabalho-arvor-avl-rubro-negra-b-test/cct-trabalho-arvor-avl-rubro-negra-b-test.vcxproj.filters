@@ -30,7 +30,10 @@
     <ClCompile Include="ArvoreBTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeradorChaves.cpp">
+    <ClCompile Include="ChavesGeradorTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CsvGeradorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

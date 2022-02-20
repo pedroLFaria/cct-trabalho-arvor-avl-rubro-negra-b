@@ -12,6 +12,11 @@ No* Arvore::criarNo(No* pai, int valor) {
     return no;
 }
 
+Arvore::Arvore() {
+    this->nulo = this->criarNo(NULL, 0);
+    this->nulo->cor = Preto;
+}
+
 Arvore* Arvore::criar() {
     Arvore* arvore = (Arvore *)malloc(sizeof(Arvore));
     arvore->nulo = NULL;

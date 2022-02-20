@@ -2,6 +2,12 @@
 
 using namespace ArvoreB;
 
+
+Arvore::Arvore(int ordem) {
+    this->ordem = ordem;
+    this->raiz = this->criaNo();
+}
+
 Arvore* Arvore::criaArvore(int ordem) {
     Arvore* a = (Arvore*)malloc(sizeof(Arvore));
     a->ordem = ordem;

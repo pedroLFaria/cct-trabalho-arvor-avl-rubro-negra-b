@@ -1,6 +1,6 @@
-#include "GeradorChaves.h"
+#include "ChavesGerador.h"
 
-std::vector<int> GeradorChaves::gerarChavesEmOrdemCrescente(int tamanho, int maxValue)
+std::vector<int> ChavesGerador::gerarChavesEmOrdemCrescente(int tamanho, int maxValue)
 {
 	std::set<int> numbers;
 	while (numbers.size() < tamanho)
@@ -18,14 +18,14 @@ std::vector<int> GeradorChaves::gerarChavesEmOrdemCrescente(int tamanho, int max
 	return output;
 }
 
-std::vector<int> GeradorChaves::gerarChavesEmOrdemDecrescente(int tamanho, int maxValue)
+std::vector<int> ChavesGerador::gerarChavesEmOrdemDecrescente(int tamanho, int maxValue)
 {
 	std::vector <int> output = gerarChavesEmOrdemCrescente(tamanho, maxValue);
 	std::reverse(output.begin(), output.end());
 	return output;
 }
 
-std::vector<int> GeradorChaves::gerarChavesAleatoria(int tamanho, int maxValue)
+std::vector<int> ChavesGerador::gerarChavesAleatoria(int tamanho, int maxValue)
 {
 	std::vector <int> output = gerarChavesEmOrdemCrescente(tamanho, maxValue);
 	auto rng = std::default_random_engine{};

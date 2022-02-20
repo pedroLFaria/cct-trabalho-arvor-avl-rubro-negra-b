@@ -27,7 +27,10 @@
     <ClCompile Include="ArvoreB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeradorChaves.cpp">
+    <ClCompile Include="ChavesGerador.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CsvGerador.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,7 +44,10 @@
     <ClInclude Include="ArvoreB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeradorChaves.h">
+    <ClInclude Include="ChavesGerador.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CsvGerador.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -28,6 +28,7 @@ namespace ArvoreRubroNegra
         No* nulo = NULL;
         int esforcoComputacional = 0;
 
+        Arvore();
         static Arvore* criar();
         static void visitar(int);
         int vazia();

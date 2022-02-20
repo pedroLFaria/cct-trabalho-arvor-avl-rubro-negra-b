@@ -88,6 +88,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,13 +145,15 @@
     <ClCompile Include="ArvoreB.cpp" />
     <ClCompile Include="ArvoreRubroNegra.cpp" />
     <ClCompile Include="cct-trabalho-arvor-avl-rubro-negra-b.cpp" />
-    <ClCompile Include="GeradorChaves.cpp" />
+    <ClCompile Include="CsvGerador.cpp" />
+    <ClCompile Include="ChavesGerador.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArvoreAvl.h" />
     <ClInclude Include="ArvoreB.h" />
     <ClInclude Include="ArvoreRubroNegra.h" />
-    <ClInclude Include="GeradorChaves.h" />
+    <ClInclude Include="CsvGerador.h" />
+    <ClInclude Include="ChavesGerador.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

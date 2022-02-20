@@ -3,9 +3,7 @@
 using namespace ArvoreAvl;
 
 Arvore* Arvore::criar() {
-    Arvore* arvore = (Arvore*)malloc(sizeof(Arvore));
-    arvore->raiz = NULL;
-
+    Arvore* arvore = new Arvore();    
     return arvore;
 }
 
@@ -23,7 +21,6 @@ No* Arvore::adicionarNo(No* no, int valor) {
     this->esforcoComputacional++;
     if (valor > no->valor) {
         if (no->direita == NULL) {
-            printf("Adicionando %d\n", valor);
             No* novo = criarNo();
             novo->valor = valor;
             novo->pai = no;
@@ -38,7 +35,6 @@ No* Arvore::adicionarNo(No* no, int valor) {
     }
     else {
         if (no->esquerda == NULL) {
-            printf("Adicionando %d\n", valor);
             No* novo = criarNo();
             novo->valor = valor;
             novo->pai = no;
@@ -55,7 +51,7 @@ No* Arvore::adicionarNo(No* no, int valor) {
 
 No* Arvore::adicionar(int valor) {
     if (this->raiz == NULL) {
-        printf("Adicionando %d\n", valor);
+        
         No* novo = criarNo();
         novo->valor = valor;
         this->raiz = novo;
@@ -145,26 +141,20 @@ void Arvore::balanceamento(No* no) {
     while (no != NULL) {
         int fator = fb(no);
 
-        if (fator > 1) { //árvore mais pesada para esquerda
-            //rotação para a direita
-            if (fb(no->esquerda) > 0) {
-                printf("RSD(%d)\n", no->valor);
-                rsd(no); //rotação simples a direita, pois o FB do filho tem sinal igual
+        if (fator > 1) { 
+            if (fb(no->esquerda) > 0) {                
+                rsd(no); 
             }
-            else {
-                printf("RDD(%d)\n", no->valor);
-                rdd(no); //rotação dupla a direita, pois o FB do filho tem sinal diferente
+            else {                
+                rdd(no); 
             }
         }
-        else if (fator < -1) { //árvore mais pesada para a direita
-         //rotação para a esquerda
-            if (fb(no->direita) < 0) {
-                printf("RSE(%d)\n", no->valor);
-                rse(no); //rotação simples a esquerda, pois o FB do filho tem sinal igual
+        else if (fator < -1) { 
+            if (fb(no->direita) < 0) {                
+                rse(no);
             }
-            else {
-                printf("RDE(%d)\n", no->valor);
-                rde(no); //rotação dupla a esquerda, pois o FB do filho tem sinal diferente
+            else {                
+                rde(no);
             }
         }
 
@@ -183,7 +173,7 @@ int Arvore::altura(No* no) {
         direita = altura(no->direita) + 1;
     }
 
-    return esquerda > direita ? esquerda : direita; //max(esquerda,direita)
+    return esquerda > direita ? esquerda : direita;
 }
 
 int Arvore::fb(No* no) {
