@@ -20,6 +20,7 @@ int Arvore::vazia() {
 }
 
 No* Arvore::adicionarNo(No* no, int valor) {
+    this->esforcoComputacional++;
     if (valor > no->valor) {
         if (no->direita == NULL) {
             printf("Adicionando %d\n", valor);
@@ -140,6 +141,7 @@ void Arvore::visitar(int valor) {
 }
 
 void Arvore::balanceamento(No* no) {
+    this->esforcoComputacional++;
     while (no != NULL) {
         int fator = fb(no);
 

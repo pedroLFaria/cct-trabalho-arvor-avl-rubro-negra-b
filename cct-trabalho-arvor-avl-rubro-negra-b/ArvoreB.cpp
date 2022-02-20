@@ -117,7 +117,7 @@ No* Arvore::divideNo(No* no) {
     int meio = no->total / 2;
     No* novo = criaNo();
     novo->pai = no->pai;
-
+    this->esforcoComputacional++;
     contador++;
 
     for (int i = meio + 1; i < no->total; i++) {
@@ -136,6 +136,7 @@ No* Arvore::divideNo(No* no) {
 
 void Arvore::adicionaChaveRecursivo(No* no, No* novo, int chave) {
     contador++;
+    this->esforcoComputacional++;
 
     adicionaChaveNo(no, novo, chave);
 
@@ -159,8 +160,7 @@ void Arvore::adicionaChaveRecursivo(No* no, No* novo, int chave) {
     }
 }
 
-void Arvore::adicionaChave(int chave) {
-    No* no = localizaNo(chave);
-
+void Arvore::adicionaChave(int chave) {    
+    No* no = localizaNo(chave);    
     adicionaChaveRecursivo(no, NULL, chave);
 }

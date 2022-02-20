@@ -14,9 +14,9 @@ namespace ArvoreRubroNegra
     class No
     {
     public:
-        struct No* pai = NULL;
-        struct No* esquerda = NULL;
-        struct No* direita = NULL;
+        No* pai = NULL;
+        No* esquerda = NULL;
+        No* direita = NULL;
         Cor cor;
         int valor;
     };
@@ -24,8 +24,10 @@ namespace ArvoreRubroNegra
     class Arvore
     {
     public:
-        struct No* raiz = NULL;
-        struct No* nulo = NULL;
+        No* raiz = NULL;
+        No* nulo = NULL;
+        int esforcoComputacional = 0;
+
         static Arvore* criar();
         static void visitar(int);
         int vazia();

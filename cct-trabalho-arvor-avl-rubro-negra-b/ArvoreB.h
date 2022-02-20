@@ -3,8 +3,8 @@
 
 namespace ArvoreB
 {
-
-    class No {
+    class No 
+    {
     public:
         int total;
         int* chaves;
@@ -18,6 +18,7 @@ namespace ArvoreB
         No* raiz = NULL;
         int ordem;
         int contador = 0;
+        int esforcoComputacional = 0;
 
         static Arvore* criaArvore(int);
         void percorreArvore(No*);        

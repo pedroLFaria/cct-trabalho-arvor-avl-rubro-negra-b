@@ -16,7 +16,9 @@ namespace ArvoreAvl
     class Arvore
     {
     public:
-        struct No* raiz = NULL;
+        No* raiz = NULL;
+        int esforcoComputacional = 0;
+
         static Arvore* criar();
         int vazia();
         No* adicionarNo(No*, int);

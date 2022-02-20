@@ -28,6 +28,7 @@ int Arvore::vazia() {
 }
 
 No* Arvore::adicionarNo(No* no, int valor) {
+    this->esforcoComputacional++;
     if (valor > no->valor) {
         if (no->direita == this->nulo) {
             no->direita = criarNo(no, valor);
@@ -52,8 +53,9 @@ No* Arvore::adicionarNo(No* no, int valor) {
     }
 }
 
-No* Arvore::adicionar(int valor) {
+No* Arvore::adicionar(int valor) {    
     if (vazia()) {
+        this->esforcoComputacional++;
         this->raiz = criarNo(this->nulo, valor);
         this->raiz->cor = Preto;
 
@@ -137,6 +139,7 @@ void Arvore::rotacionarEsquerda(No* no) {
 }
 
 void Arvore::balancear(No* no) {
+    this->esforcoComputacional++;
     while (no->pai->cor == Vermelho) {
         if (no->pai == no->pai->pai->esquerda) {
             No* tio = no->pai->pai->direita;
