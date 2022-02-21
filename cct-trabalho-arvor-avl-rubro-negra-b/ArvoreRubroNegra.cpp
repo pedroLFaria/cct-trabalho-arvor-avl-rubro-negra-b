@@ -32,6 +32,25 @@ int Arvore::vazia() {
     return this->raiz == NULL;
 }
 
+void Arvore::remover(No* no) {
+    if (no != this->nulo) {
+        remover(no->esquerda);
+        remover(no->direita);
+        if (no->pai == NULL) {
+            this->raiz = NULL;
+        }
+        else {
+            if (no->pai->esquerda == no) {
+                no->pai->esquerda = NULL;
+            }
+            else {
+                no->pai->direita = NULL;
+            }
+        }
+        free(no);
+    }
+}
+
 No* Arvore::adicionarNo(No* no, int valor) {
     this->esforcoComputacional++;
     if (valor > no->valor) {

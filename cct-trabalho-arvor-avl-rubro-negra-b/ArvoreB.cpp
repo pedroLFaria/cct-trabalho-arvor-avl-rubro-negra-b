@@ -42,6 +42,24 @@ void Arvore::percorreArvore(No* no) {
     }
 }
 
+void Arvore::remover(No* no) {
+    if (no != NULL) {
+        for (int i = 0; i < no->total; i++) {
+            remover(no->filhos[i]);           
+        }
+        remover(no->filhos[no->total]); //visita ultimo filho (direita)
+        if (no->pai == NULL) {
+            this->raiz = NULL;
+        }
+        free(no->chaves);
+        free(no);
+    }
+}
+
+void Arvore::limpar() {
+    remover(this->raiz);
+}
+
 int Arvore::pesquisaBinaria(No* no, int chave) {
     int inicio = 0, fim = no->total - 1, meio;
 

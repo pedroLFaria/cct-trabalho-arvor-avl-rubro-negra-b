@@ -31,7 +31,9 @@ namespace ArvoreB
         No* divideNo(No*);
         void adicionaChaveRecursivo(No*, No*, int);
         void adicionaChave(int);
+        void limpar();
     private:
         No* criaNo();
+        void remover(No* no);
     };
 }

@@ -5,31 +5,46 @@
 #include "ChavesGerador.h"
 #include "CsvGerador.h"
 
-vector<string> gerarEsforcoComputacionalArvoreAvl();
-vector<string> gerarEsforcoComputacionalArvoreB();
-vector<string> gerarEsforcoComputacionalArvoreRubroNegra();
+vector<string> gerarEsforcoComputacionalArvoreAvl(vector<int>, int, string);
+vector<string> gerarEsforcoComputacionalArvoreB(vector<int>, int, string);
+vector<string> gerarEsforcoComputacionalArvoreRubroNegra(vector<int>, int, string);
 
 int main()
 {
-    vector<string> arquivosAvl = gerarEsforcoComputacionalArvoreAvl();
-    vector<string> arquivosB = gerarEsforcoComputacionalArvoreB();
-    vector<string> arquivosRubroNegra = gerarEsforcoComputacionalArvoreRubroNegra();
-}
+    vector<int> chaves = ChavesGerador::gerarChavesAleatoria(100, 1000);
+    gerarEsforcoComputacionalArvoreAvl(chaves, 10, "Em ordem aletatoria");
 
-vector<string> gerarEsforcoComputacionalArvoreAvl() {    
+    chaves = ChavesGerador::gerarChavesEmOrdemCrescente(1000, 1000);
+    gerarEsforcoComputacionalArvoreAvl(chaves, 1, "Em ordem crescente");
+    gerarEsforcoComputacionalArvoreB(chaves, 1, "Em ordem crescente");
+    gerarEsforcoComputacionalArvoreRubroNegra(chaves, 1, "Em ordem crescente");
+
+    chaves = ChavesGerador::gerarChavesEmOrdemDecrescente(1000, 1000);
+    gerarEsforcoComputacionalArvoreAvl(chaves, 1, "Em ordem decrescente");    
+    gerarEsforcoComputacionalArvoreB(chaves, 1, "Em ordem decrescente");
+    gerarEsforcoComputacionalArvoreRubroNegra(chaves, 1, "Em ordem decrescente");
+
+    
+    chaves = ChavesGerador::gerarChavesAleatoria(1000, 1000);
+    gerarEsforcoComputacionalArvoreB(chaves, 10, "Em ordem aletatoria");
+    gerarEsforcoComputacionalArvoreRubroNegra(chaves, 10, "Em ordem aletatoria");
+}
+vector<string> gerarEsforcoComputacionalArvoreAvl(vector<int> chaves, int quantidadeConjuntoTeste, string extensaoNomeArquivo) {
     vector<string> nomesArquivos;
 
-    for(int i = 1; i <= 10; i++){
+    for(int i = 1; i <= quantidadeConjuntoTeste; i++) {
         ArvoreAvl::Arvore* arvore = new ArvoreAvl::Arvore();
         map<string, vector<string>> estaticasAvl;
-        string nomeArquivo = "Arvore Avl" + to_string(i);
+        string nomeArquivo = "Arvore Avl " + extensaoNomeArquivo + to_string(i);
         vector<string> esforcoComputacional;
         vector<string> numeroNos;
+        int numeroNo = 1;
 
-        for (int i = 1; i <= 1000; i++) {
+        for (int i: chaves) {
             arvore->adicionar(i);
             estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
-            estaticasAvl["numeroNos"].push_back(to_string(i));
+            estaticasAvl["numeroNos"].push_back(to_string(numeroNo));
+            numeroNo++;
         }
         nomesArquivos.push_back(nomeArquivo);
         CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
@@ -38,45 +53,49 @@ vector<string> gerarEsforcoComputacionalArvoreAvl() {
     return nomesArquivos;
 }
 
-vector<string> gerarEsforcoComputacionalArvoreB() {    
+vector<string> gerarEsforcoComputacionalArvoreB(vector<int> chaves, int quantidadeConjuntoTeste, string extensaoNomeArquivo) {
     vector<string> nomesArquivos;
 
     for (int i = 1; i <= 10; i++) {
         ArvoreB::Arvore* arvore = new ArvoreB::Arvore(20);
         map<string, vector<string>> estaticasAvl;
-        string nomeArquivo = "Arvore B" + to_string(i);
+        string nomeArquivo = "Arvore B " + extensaoNomeArquivo + to_string(i);
         vector<string> esforcoComputacional;
         vector<string> numeroNos;
+        int numeroNo = 1;
 
-        for (int i = 1; i <= 1000; i++) {
+        for (int i : chaves) {
             arvore->adicionaChave(i);
             estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
-            estaticasAvl["numeroNos"].push_back(to_string(i));
+            estaticasAvl["numeroNos"].push_back(to_string(numeroNo));
         }
         nomesArquivos.push_back(nomeArquivo);
         CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
+        arvore->limpar();
         delete arvore;
     }
     return nomesArquivos;
 }
 
-vector<string> gerarEsforcoComputacionalArvoreRubroNegra() {    
+vector<string> gerarEsforcoComputacionalArvoreRubroNegra(vector<int> chaves, int quantidadeConjuntoTeste, string extensaoNomeArquivo) {
     vector<string> nomesArquivos;
 
     for (int i = 1; i <= 10; i++) {
         ArvoreRubroNegra::Arvore* arvore = new ArvoreRubroNegra::Arvore();
         map<string, vector<string>> estaticasAvl;
-        string nomeArquivo = "Arvore Rubro Negra" + to_string(i);
+        string nomeArquivo = "Arvore Rubro Negra " + extensaoNomeArquivo + to_string(i);
         vector<string> esforcoComputacional;
         vector<string> numeroNos;
+        int numeroNo = 1;
 
-        for (int i = 1; i <= 1000; i++) {
+        for (int i : chaves) {
             arvore->adicionar(i);
             estaticasAvl["esforcoComputacional"].push_back(to_string(arvore->esforcoComputacional));
-            estaticasAvl["numeroNos"].push_back(to_string(i));
+            estaticasAvl["numeroNos"].push_back(to_string(numeroNo));
         }
         nomesArquivos.push_back(nomeArquivo);
         CsvGerador::gerarCsv(nomeArquivo, estaticasAvl);
+        arvore->remover(arvore->raiz);
         delete arvore;
     }
     return nomesArquivos;

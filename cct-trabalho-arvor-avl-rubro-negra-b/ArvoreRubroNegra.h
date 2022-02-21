@@ -37,6 +37,7 @@ namespace ArvoreRubroNegra
         void percorrerProfundidadeInOrder(No*, void (*)(int));
         void percorrerProfundidadePreOrder(No*, void (*)(int));
         void percorrerProfundidadePosOrder(No*, void (*)(int));
+        void remover(No* no);
     private:
         No* criarNo(No* pai, int valor);
         No* adicionarNo(No* no, int valor);

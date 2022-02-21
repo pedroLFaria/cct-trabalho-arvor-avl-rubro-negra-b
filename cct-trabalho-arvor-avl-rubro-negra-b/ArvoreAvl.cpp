@@ -7,9 +7,11 @@ Arvore* Arvore::criar() {
     return arvore;
 }
 
-No* criarNo()
-{
+No* criarNo() {
     No* no = new No();
+    no->direita = NULL;
+    no->esquerda = NULL;
+    no->pai = NULL;
     return no;
 }
 
@@ -24,7 +26,6 @@ No* Arvore::adicionarNo(No* no, int valor) {
             No* novo = criarNo();
             novo->valor = valor;
             novo->pai = no;
-
             no->direita = novo;
 
             return novo;
@@ -50,11 +51,11 @@ No* Arvore::adicionarNo(No* no, int valor) {
 }
 
 No* Arvore::adicionar(int valor) {
-    if (this->raiz == NULL) {
-        
+    if (this->raiz == NULL) {        
         No* novo = criarNo();
         novo->valor = valor;
         this->raiz = novo;
+        this->raiz->pai = NULL;
         return novo;
     }
     else {
@@ -85,7 +86,7 @@ void Arvore::remover(No* no) {
         }
     }
 
-    free(no);
+    delete (no);
 }
 
 No* Arvore::localizar(No* no, int valor) {
